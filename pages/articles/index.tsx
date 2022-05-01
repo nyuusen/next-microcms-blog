@@ -1,3 +1,5 @@
+import { GetStaticProps } from 'next';
+import Link from 'next/link';
 import { client } from 'libs/client';
 import {
   MicroCMSListResponse,
@@ -17,6 +19,9 @@ const ArticleList = (data: MicroCMSListResponse<Article>) => {
             <div key={content.id}>
               <div>=====================</div>
               <div>{content.title}</div>
+              <Link href={`/articles/${content.id}`}>
+                <a>Read More...</a>
+              </Link>
             </div>
           );
         })
@@ -36,7 +41,9 @@ type Article = {
   };
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps<
+  MicroCMSListResponse<Article>
+> = async () => {
   const data = await client.get<MicroCMSListResponse<Article>>({
     endpoint: 'blogs',
   });
