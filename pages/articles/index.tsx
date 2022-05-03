@@ -6,6 +6,8 @@ import {
   MicroCMSImage,
   MicroCMSListContent,
 } from 'microcms-js-sdk';
+import { Button } from '@mantine/core';
+import { TextInput } from '@mantine/core';
 
 const ArticleList = (data: MicroCMSListResponse<Article>) => {
   return (
@@ -21,16 +23,13 @@ const ArticleList = (data: MicroCMSListResponse<Article>) => {
           </div>
         </div>
         <div className="flex justify-center m-5">
-          <input
-            type="text"
-            className='shadow appearance-none border w-80 rounded py-2 px-3 mr-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username'
-            placeholder="検索ワードを入力してください"
+          <TextInput
+            placeholder="キーワードを入力"
+            className="mr-2 min-w-min"
           />
-          <button
-            type="button"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <Button variant="outline" color="gray">
             検索
-          </button>
+          </Button>
         </div>
         <div className="p-10 mx-auto flex flex-col justify-center">
           <div className="text-lg">
