@@ -7,9 +7,16 @@ import {
   MicroCMSListContent,
 } from 'microcms-js-sdk';
 import { Button } from '@mantine/core';
-import { TextInput } from '@mantine/core';
+import { TextInput, Text, Paper } from '@mantine/core';
+import { useInputState, usePagination } from '@mantine/hooks';
+import { useState } from 'react';
+import { formatDate } from 'util';
 
 const ArticleList = (data: MicroCMSListResponse<Article>) => {
+  const [searchWord, setSearchWord] = useInputState('');
+  const [page, onChange] = useState(1);
+  const pagination = usePagination({ total: 10, page, onChange });
+
   return (
     <>
       <div className="p-5 mx-auto">
@@ -26,34 +33,38 @@ const ArticleList = (data: MicroCMSListResponse<Article>) => {
           <TextInput
             placeholder="キーワードを入力"
             className="mr-2 min-w-min"
+            value={searchWord}
+            onChange={setSearchWord}
           />
           <Button variant="outline" color="gray">
             検索
           </Button>
         </div>
-        <div className="p-10 mx-auto flex flex-col justify-center">
+        <div className="p-20 mx-auto flex flex-col justify-center">
           <div className="text-lg">
             記事の件数: <span className="font-bold">{data.totalCount}</span>件
           </div>
           {data.contents.length > 0 ? (
-            data.contents.map(content => {
-              console.log(content);
-              return (
-                <div key={content.id}>
-                  {/* <div>=====================</div>
-                <div>{content.title}</div>
-                <Link href={`/articles/${content.id}`}>
-                  <a>Read More...</a>
-                </Link> */}
-                  <div className="max-w-sm w-full lg:max-w-full lg:flex">
-                    <div>{content.title}</div>
-                    <div className="whitespace-nowrap overflow-hidden overflow-ellipsis">
-                      {content.content}
-                    </div>
-                  </div>
-                </div>
-              );
-            })
+            data.contents.map(content => (
+              <Paper
+                shadow="xs"
+                p="md"
+                key={content.id}
+                className="mt-4"
+                sx={theme => ({
+                  backgroundColor: theme.colors.gray[0],
+                  '&:hover': {
+                    backgroundColor: theme.colors.gray[1],
+                  },
+                })}>
+                <Text size="lg" weight={500}>
+                  {content.title}
+                </Text>
+                <Text size="xs" color="gray">
+                  {formatDate(content.publishedAt)}
+                </Text>
+              </Paper>
+            ))
           ) : (
             <div>記事はありません</div>
           )}
