@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import Image from 'next/image';
+import ProfileImage from '../public/profile.jpg';
 
 const Header = () => {
   return (
@@ -11,8 +13,7 @@ const Header = () => {
         </Link>
         <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
           <Link href={'/articles'} passHref>
-            {/* <a className="mr-5 hover:text-gray-900">Profile</a> */}
-            <img src="../public/profile.jpg" alt="profile" />
+            <Image src={ProfileImage} width={50} height={50} />
           </Link>
         </nav>
       </div>
