@@ -10,11 +10,11 @@ import {
 const ArticleList = (data: MicroCMSListResponse<Article>) => {
   return (
     <>
-      <div className="p-5 mx-auto">
+      <div className="wrapper wrapper-small">
         <div className="pb-5 text-center border-b-2 mx-auto">
           <h2 className="text-3xl font-bold">ON(温)の学習メモ</h2>
           <div className="text-1xl text-gray-600 mt-2">
-            日々学んだことをメモレベルでつらつらと。
+            日々学んだことをメモ。
             <a className="underline" href="https://qiita.com/wanwanwan">
               Qiita
             </a>
@@ -23,7 +23,7 @@ const ArticleList = (data: MicroCMSListResponse<Article>) => {
         <div className="flex justify-center m-5">
           <input
             type="text"
-            className='shadow appearance-none border w-80 rounded py-2 px-3 mr-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username'
+            className="shadow appearance-none border w-80 rounded py-2 px-3 mr-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="検索ワードを入力してください"
           />
           <button
@@ -33,24 +33,35 @@ const ArticleList = (data: MicroCMSListResponse<Article>) => {
           </button>
         </div>
         <div className="p-10 mx-auto flex flex-col justify-center">
-          <div className="text-lg">
+          {/* <div className="text-lg">
             記事の件数: <span className="font-bold">{data.totalCount}</span>件
-          </div>
+          </div> */}
           {data.contents.length > 0 ? (
             data.contents.map(content => {
               console.log(content);
               return (
-                <div key={content.id}>
-                  {/* <div>=====================</div>
-                <div>{content.title}</div>
-                <Link href={`/articles/${content.id}`}>
-                  <a>Read More...</a>
-                </Link> */}
-                  <div className="max-w-sm w-full lg:max-w-full lg:flex">
-                    <div>{content.title}</div>
-                    <div className="whitespace-nowrap overflow-hidden overflow-ellipsis">
-                      {content.content}
-                    </div>
+                <div className="my-6 bg-gray-100 p-4 md:p-6 rounded-xl shadow-md">
+                  <div className="flex justify-between items-center">
+                    <span className="font-semibold text-gray-600 text-sm">
+                      {content.publishedAt}
+                    </span>
+                  </div>
+                  <div className="mt-2">
+                    <a
+                      href=""
+                      className="text-xl md:text-2xl text-gray-700 font-bold hover:text-gray-600 hover:underline">
+                      How to create an amazing blog.
+                    </a>
+                    <p className="mt-2 text-base lg:text-lg text-gray-700">
+                      説明文が入ります説明文が入ります説明文が入ります
+                    </p>
+                  </div>
+                  <div className="mt-4">
+                    <a
+                      href=""
+                      className="text-primary font-semibold hover:underline">
+                      Read More..
+                    </a>
                   </div>
                 </div>
               );
