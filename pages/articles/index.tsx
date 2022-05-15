@@ -6,6 +6,7 @@ import {
   MicroCMSImage,
   MicroCMSListContent,
 } from 'microcms-js-sdk';
+import { format } from 'date-fns';
 
 const ArticleList = (data: MicroCMSListResponse<Article>) => {
   return (
@@ -37,35 +38,32 @@ const ArticleList = (data: MicroCMSListResponse<Article>) => {
             記事の件数: <span className="font-bold">{data.totalCount}</span>件
           </div> */}
           {data.contents.length > 0 ? (
-            data.contents.map(content => {
-              console.log(content);
-              return (
-                <div className="my-6 bg-gray-100 p-4 md:p-6 rounded-xl shadow-md">
-                  <div className="flex justify-between items-center">
-                    <span className="font-semibold text-gray-600 text-sm">
-                      {content.publishedAt}
-                    </span>
-                  </div>
-                  <div className="mt-2">
-                    <a
-                      href=""
-                      className="text-xl md:text-2xl text-gray-700 font-bold hover:text-gray-600 hover:underline">
-                      {content.title}
-                    </a>
-                    <p className="mt-2 text-base lg:text-lg text-gray-700">
-                      説明文が入ります説明文が入ります説明文が入ります
-                    </p>
-                  </div>
-                  <div className="mt-4">
-                    <a
-                      href=""
-                      className="text-primary font-semibold hover:underline">
-                      Read More..
-                    </a>
-                  </div>
+            data.contents.map(content => (
+              <div className="my-6 bg-gray-100 p-4 md:p-6 rounded-xl shadow-md">
+                <div className="flex justify-between items-center">
+                  <span className="font-semibold text-gray-600 text-sm">
+                    {format(new Date(content.publishedAt), 'yyyy-MM-dd')}
+                  </span>
                 </div>
-              );
-            })
+                <div className="mt-2">
+                  <a
+                    href=""
+                    className="text-xl md:text-2xl text-gray-700 font-bold hover:text-gray-600 hover:underline">
+                    How to create an amazing blog.
+                  </a>
+                  <p className="mt-2 text-base lg:text-lg text-gray-700">
+                    説明文が入ります説明文が入ります説明文が入ります
+                  </p>
+                </div>
+                <div className="mt-4">
+                  <a
+                    href=""
+                    className="text-primary font-semibold hover:underline">
+                    Read More..
+                  </a>
+                </div>
+              </div>
+            ))
           ) : (
             <div>記事はありません</div>
           )}
