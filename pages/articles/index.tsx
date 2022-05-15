@@ -50,7 +50,7 @@ const ArticleList = (data: MicroCMSListResponse<Article>) => {
                     <a
                       href=""
                       className="text-xl md:text-2xl text-gray-700 font-bold hover:text-gray-600 hover:underline">
-                      How to create an amazing blog.
+                      {content.title}
                     </a>
                     <p className="mt-2 text-base lg:text-lg text-gray-700">
                       説明文が入ります説明文が入ります説明文が入ります
