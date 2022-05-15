@@ -34,32 +34,19 @@ const ArticleList = (data: MicroCMSListResponse<Article>) => {
           </button>
         </div>
         <div className="p-10 mx-auto flex flex-col justify-center">
-          {/* <div className="text-lg">
-            記事の件数: <span className="font-bold">{data.totalCount}</span>件
-          </div> */}
           {data.contents.length > 0 ? (
             data.contents.map(content => (
-              <div className="my-6 bg-gray-100 p-4 md:p-6 rounded-xl shadow-md">
+              <div className="my-6 bg-gray-50 p-4 md:p-6 rounded-xl shadow-md">
                 <div className="flex justify-between items-center">
                   <span className="font-semibold text-gray-600 text-sm">
-                    {format(new Date(content.publishedAt), 'yyyy-MM-dd')}
+                    {format(new Date(content.publishedAt), 'yyyy年MM月dd日')}
                   </span>
                 </div>
                 <div className="mt-2">
                   <a
                     href=""
                     className="text-xl md:text-2xl text-gray-700 font-bold hover:text-gray-600 hover:underline">
-                    How to create an amazing blog.
-                  </a>
-                  <p className="mt-2 text-base lg:text-lg text-gray-700">
-                    説明文が入ります説明文が入ります説明文が入ります
-                  </p>
-                </div>
-                <div className="mt-4">
-                  <a
-                    href=""
-                    className="text-primary font-semibold hover:underline">
-                    Read More..
+                    {content.title}
                   </a>
                 </div>
               </div>
@@ -88,8 +75,6 @@ export const getStaticProps: GetStaticProps<
   const data = await client.get<MicroCMSListResponse<Article>>({
     endpoint: 'blogs',
   });
-
-  console.log('getStatic', data);
 
   return {
     props: {
