@@ -7,6 +7,7 @@ import {
   MicroCMSListContent,
 } from 'microcms-js-sdk';
 import { format } from 'date-fns';
+import { htmlToString } from 'utils/html-parser';
 
 const ArticleList = (data: MicroCMSListResponse<Article>) => {
   return (
@@ -35,20 +36,21 @@ const ArticleList = (data: MicroCMSListResponse<Article>) => {
         </div>
         <div className="p-10 mx-auto flex flex-col justify-center">
           {data.contents.length > 0 ? (
-            data.contents.map(content => (
+            data.contents.map(c => (
               <div className="my-6 bg-gray-50 p-4 md:p-6 rounded-xl shadow-md">
                 <div className="flex justify-between items-center">
                   <span className="font-semibold text-gray-600 text-sm">
-                    {format(new Date(content.publishedAt), 'yyyy年MM月dd日')}
+                    {format(new Date(c.publishedAt), 'yyyy年MM月dd日')}
                   </span>
                 </div>
                 <div className="mt-2">
                   <a
                     href=""
                     className="text-xl md:text-2xl text-gray-700 font-bold hover:text-gray-600 hover:underline">
-                    {content.title}
+                    {c.title}
                   </a>
                 </div>
+                <div className="mt-2 text-gray-600 whitespace-nowrap overflow-hidden overflow-ellipsis">{htmlToString(c.content)}</div>
               </div>
             ))
           ) : (
