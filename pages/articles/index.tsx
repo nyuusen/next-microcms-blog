@@ -13,7 +13,7 @@ const ArticleList = (data: MicroCMSListResponse<Article>) => {
     <>
       <div className="wrapper wrapper-small">
         <div className="pb-5 text-center border-b-2 mx-auto">
-          <h2 className="text-3xl font-bold">ON(温)の学習メモ</h2>
+          <h2 className="text-3xl font-bold">onの学習メモ</h2>
           <div className="text-1xl text-gray-600 mt-2">
             日々学んだことをメモ。
             <a className="underline" href="https://qiita.com/wanwanwan">
