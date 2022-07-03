@@ -1,16 +1,12 @@
 import Head from 'next/head';
 import { GetStaticProps } from 'next';
-import {
-  MicroCMSListResponse,
-  MicroCMSImage,
-  MicroCMSListContent,
-} from 'microcms-js-sdk';
+import { MicroCMSListResponse } from 'microcms-js-sdk';
 import { client } from 'libs/client';
 import { format } from 'date-fns';
 import { htmlToString } from 'utils/html-parser';
+import { Article } from 'types/article';
 
 const Home = (data: MicroCMSListResponse<Article>) => {
-  const { contents } = data;
   return (
     <div className="max-w-full">
       <Head>
@@ -75,15 +71,6 @@ const Home = (data: MicroCMSListResponse<Article>) => {
       </div>
     </div>
   );
-};
-
-type Article = {
-  title: string;
-  content: string;
-  eyecatch: MicroCMSImage;
-  category: MicroCMSListContent & {
-    name: string;
-  };
 };
 
 export const getStaticProps: GetStaticProps<
