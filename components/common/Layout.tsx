@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
+import Header from './Header';
+import Footer from './Footer';
 
 interface Prop {
   children: React.ReactNode;
@@ -17,4 +17,3 @@ const Layout: NextPage<Prop> = ({ children }) => {
 };
 
 export default Layout;
-
