@@ -10,7 +10,7 @@ const Home = (data: MicroCMSListResponse<Article>) => {
   return (
     <div className="max-w-full">
       <Head>
-        <title>Create Next App</title>
+        <title>onの学習メモ</title>
         <link
           href="https://fonts.googleapis.com/css2?family=Krona+One&display=optional"
           rel="stylesheet"
