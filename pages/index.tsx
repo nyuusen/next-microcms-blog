@@ -1,3 +1,4 @@
+import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
@@ -44,27 +45,30 @@ const Home = (props: MicroCMSListResponse<Article>) => {
         <div className="p-10 mx-auto flex flex-col justify-center">
           {props.contents.length > 0 ? (
             props.contents.map(({ id, title, category, content }) => (
-              <Link href={`/${id}`}>
-                <div
-                  className="my-6 bg-gray-50 p-4 md:p-6 rounded-xl shadow-md"
-                  key={id}>
-                  <div className="flex justify-between items-center">
-                    <span className="font-semibold text-gray-600 text-sm">
-                      {format(new Date(category.publishedAt), 'yyyy年MM月dd日')}
-                    </span>
+              <React.Fragment key={id}>
+                <Link href={`/${id}`}>
+                  <div className="my-6 bg-gray-50 p-4 md:p-6 rounded-xl shadow-md">
+                    <div className="flex justify-between items-center">
+                      <span className="font-semibold text-gray-600 text-sm">
+                        {format(
+                          new Date(category.publishedAt),
+                          'yyyy年MM月dd日',
+                        )}
+                      </span>
+                    </div>
+                    <div className="mt-2">
+                      <a
+                        href=""
+                        className="text-xl md:text-2xl text-gray-700 font-bold hover:text-gray-600 hover:underline">
+                        {title}
+                      </a>
+                    </div>
+                    <div className="mt-2 text-gray-600 whitespace-nowrap overflow-hidden overflow-ellipsis">
+                      {htmlToString(content)}
+                    </div>
                   </div>
-                  <div className="mt-2">
-                    <a
-                      href=""
-                      className="text-xl md:text-2xl text-gray-700 font-bold hover:text-gray-600 hover:underline">
-                      {title}
-                    </a>
-                  </div>
-                  <div className="mt-2 text-gray-600 whitespace-nowrap overflow-hidden overflow-ellipsis">
-                    {htmlToString(content)}
-                  </div>
-                </div>
-              </Link>
+                </Link>
+              </React.Fragment>
             ))
           ) : (
             <div>記事はありません</div>
