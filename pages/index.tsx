@@ -12,22 +12,19 @@ const Home = (props: MicroCMSListResponse<Article>) => {
   return (
     <div className="max-w-full">
       <Head>
-        <title>onの学習メモ</title>
+        <title>学習メモ</title>
         <link
           href="https://fonts.googleapis.com/css2?family=Krona+One&display=optional"
           rel="stylesheet"
         />
-        <meta name="description" content="onの学習メモ" />
-        <link rel="icon" href="/profile.jpg" />
+        <meta name="description" content="学習メモ" />
+        <link rel="icon" href="/dog.jpg" />
       </Head>
       <div className="wrapper wrapper-small">
         <div className="pb-5 text-center border-b-2 mx-auto">
-          <h2 className="text-3xl font-bold">onの学習メモ</h2>
+          <h2 className="text-3xl font-bold">学習メモ</h2>
           <div className="text-1xl text-gray-600 mt-2">
-            日々学んだことをメモ。
-            <a className="underline" href="https://qiita.com/wanwanwan">
-              Qiita
-            </a>
+            日々学んだことをメモする
           </div>
         </div>
         <div className="flex justify-center m-5">
@@ -50,10 +47,12 @@ const Home = (props: MicroCMSListResponse<Article>) => {
                   <div className="my-6 bg-gray-50 p-4 md:p-6 rounded-xl shadow-md">
                     <div className="flex justify-between items-center">
                       <span className="font-semibold text-gray-600 text-sm">
-                        {format(
-                          new Date(category.publishedAt),
-                          'yyyy年MM月dd日',
-                        )}
+                        {category?.publishedAt
+                          ? format(
+                              new Date(category.publishedAt),
+                              'yyyy年MM月dd日',
+                            )
+                          : ''}
                       </span>
                     </div>
                     <div className="mt-2">
